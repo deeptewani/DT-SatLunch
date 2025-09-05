@@ -1,1 +1,587 @@
-Durga Temple -
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Durga Temple - Saturday Brunch - Order Online</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1.2rem;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            align-items: start;
+        }
+
+        .menu-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .cart-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 20px;
+        }
+
+        .category {
+            margin-bottom: 40px;
+        }
+
+        .category h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #3498db;
+            font-size: 1.8rem;
+        }
+
+        .menu-items {
+            display: grid;
+            gap: 15px;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            border-left: 4px solid #3498db;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border-left-color: #e74c3c;
+        }
+
+        .item-info {
+            flex: 1;
+        }
+
+        .item-name {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .item-description {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .item-price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #e74c3c;
+        }
+
+        .add-btn {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin-left: 15px;
+        }
+
+        .add-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        }
+
+        .cart h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .cart-item-price {
+            color: #e74c3c;
+            font-size: 0.9rem;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .qty-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .qty-btn:hover {
+            background: #2980b9;
+        }
+
+        .quantity {
+            font-weight: bold;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        .cart-total {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #3498db;
+        }
+
+        .total-price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #2c3e50;
+            text-align: center;
+        }
+
+        .order-form {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #ecf0f1;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #2c3e50;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ecf0f1;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        .order-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .order-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(231, 76, 60, 0.3);
+        }
+
+        .order-btn:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .empty-cart {
+            text-align: center;
+            color: #7f8c8d;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .cart-section {
+                position: static;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🍽️ Durga Temple - Delicious Bites</h1>
+            <p class="subtitle">Fresh, Fast & Flavorful - Order Online Now!</p>
+        </header>
+
+        <div class="main-content">
+            <div class="menu-section">
+                <div class="category">
+                    <h2>🍛 Main Dishes</h2>
+                    <div class="menu-items">
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <div class="item-name">Chole Bhature</div>
+                                <div class="item-description">Classic spiced chickpea curry with hot and fluffy fried bread</div>
+                                <div class="item-price">$12.99</div>
+                            </div>
+                            <button class="add-btn" onclick="addToCart('Chole Bhature', 12.99)">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <div class="item-name">Puri-Bhaji</div>
+                                <div class="item-description">Fresh fried puris served with flavorful potato curry (bhaji)</div>
+                                <div class="item-price">$10.99</div>
+                            </div>
+                            <button class="add-btn" onclick="addToCart('Puri-Bhaji', 10.99)">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <div class="item-name">Rajma Chawal</div>
+                                <div class="item-description">Comfort food favorite - kidney bean curry served with basmati rice</div>
+                                <div class="item-price">$11.99</div>
+                            </div>
+                            <button class="add-btn" onclick="addToCart('Rajma Chawal', 11.99)">Add</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category">
+                    <h2>🥗 Salads & Sides</h2>
+                    <div class="menu-items">
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <div class="item-name">Caesar Salad</div>
+                                <div class="item-description">Crisp romaine lettuce, croutons, parmesan, caesar dressing</div>
+                                <div class="item-price">$8.99</div>
+                            </div>
+                            <button class="add-btn" onclick="addToCart('Caesar Salad', 8.99)">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <div class="item-name">Garlic Bread</div>
+                                <div class="item-description">Toasted bread with garlic butter and herbs</div>
+                                <div class="item-price">$4.99</div>
+                            </div>
+                            <button class="add-btn" onclick="addToCart('Garlic Bread', 4.99)">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <div class="item-name">Sweet Potato Fries</div>
+                                <div class="item-description">Crispy sweet potato fries with sea salt</div>
+                                <div class="item-price">$6.99</div>
+                            </div>
+                            <button class="add-btn" onclick="addToCart('Sweet Potato Fries', 6.99)">Add</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category">
+                    <h2>🥤 Beverages</h2>
+                    <div class="menu-items">
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <div class="item-name">Fresh Orange Juice</div>
+                                <div class="item-description">Freshly squeezed orange juice</div>
+                                <div class="item-price">$3.99</div>
+                            </div>
+                            <button class="add-btn" onclick="addToCart('Fresh Orange Juice', 3.99)">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <div class="item-name">Iced Coffee</div>
+                                <div class="item-description">Cold brew coffee with ice</div>
+                                <div class="item-price">$2.99</div>
+                            </div>
+                            <button class="add-btn" onclick="addToCart('Iced Coffee', 2.99)">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <div class="item-name">Soft Drink</div>
+                                <div class="item-description">Cola, Sprite, or Orange</div>
+                                <div class="item-price">$1.99</div>
+                            </div>
+                            <button class="add-btn" onclick="addToCart('Soft Drink', 1.99)">Add</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category">
+                    <h2>🍰 Desserts</h2>
+                    <div class="menu-items">
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <div class="item-name">Chocolate Cake</div>
+                                <div class="item-description">Rich chocolate cake with chocolate frosting</div>
+                                <div class="item-price">$5.99</div>
+                            </div>
+                            <button class="add-btn" onclick="addToCart('Chocolate Cake', 5.99)">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <div class="item-name">Ice Cream Sundae</div>
+                                <div class="item-description">Vanilla ice cream with chocolate sauce and cherry</div>
+                                <div class="item-price">$4.99</div>
+                            </div>
+                            <button class="add-btn" onclick="addToCart('Ice Cream Sundae', 4.99)">Add</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cart-section">
+                <div class="cart">
+                    <h3>🛒 Your Order</h3>
+                    <div id="cart-items">
+                        <div class="empty-cart">Your cart is empty</div>
+                    </div>
+                    <div class="cart-total" id="cart-total" style="display: none;">
+                        <div class="total-price">Total: $<span id="total-amount">0.00</span></div>
+                    </div>
+                </div>
+
+                <div class="order-form" id="order-form" style="display: none;">
+                    <h3>📝 Order Details</h3>
+                    <div class="form-group">
+                        <label for="customer-name">Name *</label>
+                        <input type="text" id="customer-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="customer-phone">Phone *</label>
+                        <input type="tel" id="customer-phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="customer-email">Email</label>
+                        <input type="email" id="customer-email">
+                    </div>
+                    <div class="form-group">
+                        <label for="delivery-address">Delivery Address *</label>
+                        <textarea id="delivery-address" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="special-instructions">Special Instructions</label>
+                        <textarea id="special-instructions" rows="2" placeholder="Any special requests or notes..."></textarea>
+                    </div>
+                    <button class="order-btn" onclick="placeOrder()">Place Order 🚀</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let cart = {};
+        let totalAmount = 0;
+
+        function addToCart(itemName, price) {
+            if (cart[itemName]) {
+                cart[itemName].quantity += 1;
+            } else {
+                cart[itemName] = {
+                    price: price,
+                    quantity: 1
+                };
+            }
+            updateCartDisplay();
+        }
+
+        function updateQuantity(itemName, change) {
+            if (cart[itemName]) {
+                cart[itemName].quantity += change;
+                if (cart[itemName].quantity <= 0) {
+                    delete cart[itemName];
+                }
+            }
+            updateCartDisplay();
+        }
+
+        function updateCartDisplay() {
+            const cartItemsDiv = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+            const orderForm = document.getElementById('order-form');
+            
+            if (Object.keys(cart).length === 0) {
+                cartItemsDiv.innerHTML = '<div class="empty-cart">Your cart is empty</div>';
+                cartTotal.style.display = 'none';
+                orderForm.style.display = 'none';
+                return;
+            }
+
+            let cartHTML = '';
+            totalAmount = 0;
+
+            for (const [itemName, item] of Object.entries(cart)) {
+                const itemTotal = item.price * item.quantity;
+                totalAmount += itemTotal;
+
+                cartHTML += `
+                    <div class="cart-item">
+                        <div class="cart-item-info">
+                            <div class="cart-item-name">${itemName}</div>
+                            <div class="cart-item-price">$${item.price.toFixed(2)} each</div>
+                        </div>
+                        <div class="quantity-controls">
+                            <button class="qty-btn" onclick="updateQuantity('${itemName}', -1)">-</button>
+                            <span class="quantity">${item.quantity}</span>
+                            <button class="qty-btn" onclick="updateQuantity('${itemName}', 1)">+</button>
+                        </div>
+                    </div>
+                `;
+            }
+
+            cartItemsDiv.innerHTML = cartHTML;
+            document.getElementById('total-amount').textContent = totalAmount.toFixed(2);
+            cartTotal.style.display = 'block';
+            orderForm.style.display = 'block';
+        }
+
+        function placeOrder() {
+            const name = document.getElementById('customer-name').value;
+            const phone = document.getElementById('customer-phone').value;
+            const email = document.getElementById('customer-email').value;
+            const address = document.getElementById('delivery-address').value;
+            const instructions = document.getElementById('special-instructions').value;
+
+            if (!name || !phone || !address) {
+                alert('Please fill in all required fields (Name, Phone, and Delivery Address).');
+                return;
+            }
+
+            // Create order summary
+            let orderSummary = `🍽️ NEW ORDER RECEIVED!\n\n`;
+            orderSummary += `👤 Customer Information:\n`;
+            orderSummary += `Name: ${name}\n`;
+            orderSummary += `Phone: ${phone}\n`;
+            if (email) orderSummary += `Email: ${email}\n`;
+            orderSummary += `Address: ${address}\n\n`;
+
+            orderSummary += `🛒 Order Items:\n`;
+            for (const [itemName, item] of Object.entries(cart)) {
+                orderSummary += `• ${itemName} x${item.quantity} - $${(item.price * item.quantity).toFixed(2)}\n`;
+            }
+
+            orderSummary += `\n💰 Total Amount: $${totalAmount.toFixed(2)}\n`;
+
+            if (instructions) {
+                orderSummary += `\n📝 Special Instructions:\n${instructions}\n`;
+            }
+
+            orderSummary += `\n⏰ Order Time: ${new Date().toLocaleString()}\n`;
+
+            // Display order confirmation
+            alert(`Order placed successfully! 🎉\n\nOrder Summary:\n${orderSummary}\n\nThank you for your order! We'll contact you soon to confirm delivery details.`);
+
+            // Reset form and cart
+            cart = {};
+            totalAmount = 0;
+            updateCartDisplay();
+            document.getElementById('customer-name').value = '';
+            document.getElementById('customer-phone').value = '';
+            document.getElementById('customer-email').value = '';
+            document.getElementById('delivery-address').value = '';
+            document.getElementById('special-instructions').value = '';
+
+            // In a real application, you would send this data to your server
+            console.log('Order Data:', {
+                customer: { name, phone, email, address },
+                items: cart,
+                total: totalAmount,
+                instructions,
+                timestamp: new Date().toISOString()
+            });
+        }
+    </script>
+</body>
+</html>
+
